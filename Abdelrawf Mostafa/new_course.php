@@ -1,34 +1,22 @@
-<?php
-include ("db.php");
+<?php 
+$conn = mysqli_connect("localhost","root","","course") or die(mysqli_error($conn));
 
+if(isset($_POST["submit"])){
 
-
+    $fullname = $_POST["fullname"] ;
+  
+    $email = $_POST["email"];
+  
+    $gpa = $_POST["gpa"];
+  
+  
+     $request = "insert into Course (fullname, email, gpa ) 
+    values('$name', '$email', '$gpa' )";
+  
+    mysqli_query( $conn, $request);
+    echo "<script>alert('Data has been sent!')</script>";
+  }else{
+   echo"<script>alert ('something wrong tyr again!!')</script>";
+  
+  }   
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edae">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Course</title>
-</head>
-<body>
-    <div class="container">
-
-        <form action="" method="post">
-            <div class="form-group">
-                <input type="text" name="fullname" placeholder="Full Name : ">
-            </div>
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Email"> 
-            </div>
-            <div class="form-group">
-                <input type="text" name="gpa" placeholder="GPA">
-            </div>
-            <div class="form-group">
-                <input type="submit" valu="submit" name="submit">
-            </div>
-        </form>
-    </div>
-</body>
-</html
