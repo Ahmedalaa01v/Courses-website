@@ -98,23 +98,6 @@
             color: #2980b9;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                margin: 20px auto;
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            table, th, td {
-                font-size: 16px;
-                padding: 10px;
-            }
-        }
-
         .edit-btn {
             background-color: #3498db;
             color: white;
