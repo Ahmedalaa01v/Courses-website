@@ -6,7 +6,7 @@
     <title>Student List</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
             background-color: #001f3f;
             margin: 0;
             padding: 0;
@@ -20,18 +20,6 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         h1 {
@@ -64,10 +52,6 @@
             color: white;
         }
 
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
         tbody tr:hover {
             background-color: #e0f7fa;
             cursor: pointer;
@@ -80,10 +64,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        td {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
         a {
             color: #3498db;
             text-decoration: none;
@@ -93,11 +73,53 @@
         a:hover {
             color: #2980b9;
         }
+        
+        .edit-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .edit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .add-btn {
+            background-color: #2ecc71;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .add-btn:hover {
+            background-color: #27ae60;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Student List</h1>
+        <button class="add-btn">Add new Student</button>
         <table>
             <thead>
                 <tr>
@@ -106,6 +128,7 @@
                     <th>Email</th>
                     <th>GPA</th>
                     <th>Courses</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="studentTable">
@@ -120,6 +143,11 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
+                if (isset($_POST['delete_id'])) {
+                    $delete_id = $_POST['delete_id'];
+                    $delete_sql = "DELETE FROM students WHERE id = '$delete_id'";
+                    $conn->query($delete_sql);
+                }
 
                 $sql = "SELECT id, name, email, gpa, courses FROM students";
                 $result = $conn->query($sql);
@@ -132,6 +160,13 @@
                                 <td>" . $row["email"] . "</td>
                                 <td>" . $row["gpa"] . "</td>
                                 <td>" . $row["courses"] . "</td>
+                                 <td>
+                                    <button class='edit-btn'>Edit</button>
+                                    <form method='post' action=''>
+                                        <input type='hidden' name='delete_id' value='" . $row["id"] . "'>
+                                        <button type='submit' class='delete-btn'>Delete</button>
+                                    </form>
+                                </td>
                               </tr>";
                     }
                 } else {
