@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="style/login.css">
+</head>
+
+<body>
+    <?php
+require_once 'php/register.php';
+?>
+    <form method="post" action="php/register.php">
+        <h2>Register</h2>
+        <input type="text" name="name" placeholder="Enter your first name" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="text" name="GPA" placeholder="Enter your GPA" required>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <button type="submit">Sign up</button>
+    </form>
+</body>
+
+</html>
