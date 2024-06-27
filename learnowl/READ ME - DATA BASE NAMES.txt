@@ -1,0 +1,20 @@
+databse name:
+learnowl
+
+tabel: users
+- ID
+- name
+- email
+- GPA
+- assigned_course
+- password
+
+table: courses
+-ID
+-title
+-description
+-instructor
+
+
+
+*TAKING A CONSIDERED FOR UPPER CASE AND LOWER CASE LETTERS*
